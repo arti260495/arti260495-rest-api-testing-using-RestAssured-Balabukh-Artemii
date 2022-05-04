@@ -158,6 +158,7 @@ public class ApiTests extends BaseTest{
                 .param("carId", 1)
                 .when().post("/user/{userId}/buyCar/{carId}").then()
                 .statusCode(201);
+
     }
 
     @Test
