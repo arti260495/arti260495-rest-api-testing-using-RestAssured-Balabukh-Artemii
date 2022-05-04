@@ -1,0 +1,16 @@
+{
+  "floorCount": 2,
+  "price": 230,
+  "parkingPlaces": [
+    {
+      "isWarm": true,
+      "isCovered": true,
+      "placesCount": 1
+    },
+    {
+      "isWarm": false,
+      "isCovered": false,
+      "placesCount": 2
+    }
+  ]
+}

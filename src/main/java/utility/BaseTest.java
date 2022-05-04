@@ -3,12 +3,8 @@ package utility;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import io.restassured.http.ContentType;
+import org.testng.annotations.*;
 
 
 import io.restassured.builder.RequestSpecBuilder;
@@ -21,15 +17,14 @@ public abstract class BaseTest extends FrameworkUtility {
 	
 	protected static RequestSpecification requestSpec;
 	protected static ResponseSpecification responseSpec;
-	
+
 	@BeforeSuite
 	public void setBaseURI() {
-		
-        AllureLogger.logToAllure("The base URI is : "+readConfigurationFile("Base_URI"));
-		requestSpec = new RequestSpecBuilder().
-                		setBaseUri(readConfigurationFile("Base_URI")).
-                		build();
-        
+		AllureLogger.logToAllure("The base URI is : " + readConfigurationFile("Base_URI"));
+		requestSpec = new RequestSpecBuilder()
+				.setBaseUri("http://77.50.236.203:4880/")
+				.setContentType(ContentType.JSON)
+				.build();
 	}
 
 	/*****************************************************************************************************************/
@@ -41,6 +36,7 @@ public abstract class BaseTest extends FrameworkUtility {
 	/****************************************************************************************************************/
 //	@BeforeClass
 	public void beforeClass() {
+
 	}
 	
 	/****************************************************************************************************************/	
@@ -52,8 +48,9 @@ public abstract class BaseTest extends FrameworkUtility {
 	/************************************************************************************************************************/
 	@BeforeMethod
 	public void beforeMethod() {
-    	responseSpec = new ResponseSpecBuilder().expectStatusCode(200).build();        
+    	responseSpec = new ResponseSpecBuilder().expectStatusCode(200).build();
 	}
+
 
 //	@AfterMethod
 	public void afterMethod() {
